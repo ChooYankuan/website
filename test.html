@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookSaw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Storm&display=swap');
+
+        body 
+        {
+            font-family: "", system-ui;
+        }
+
+        header 
+        {
+            background: #ffffff;
+            color: #000000;
+            text-align: center;
+            padding: 15px;
+        }
+
+       .carousel 
+       {
+            width: 600px;
+            height: 400px;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+
+        
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }   
+        .carousel-window 
+        {
+        width: 100%;
+        overflow: hidden;
+        }
+        
+        button 
+        {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            height: 45px;
+            font-size: 18px;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        input[type="search"] 
+        {
+            width: 350px;
+            height: 45px;
+            font-size: 18px;
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>BookSaw</h1>
+        <p>get your books here</p>
+    </header>
+    <nevigation>
+        <a href="#">Home</a>
+        <a href="#">Categories</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">Contact Us</a>
+    </navigation>
+    <form>
+        <input type="search" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="container">
+        <h2>get your books at BookSaw</h2>
+        <p>Buy now at a low price</p>
+        <button onclick="window.location.href='https://wutheringwaves.kurogames.com/en/'">
+            buy here
+        </button>
+    </div>
+
+    <div class="carousel">
+        <button class="prev">‹</button> 
+
+        <div class="carousel-window">
+            <div class="carousel-track">
+                <div class="slide">
+                    <img src="https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp" alt="Book Image">
+                    <img src="https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp" alt="Book Image">
+                    <img src="https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp" alt="Book Image">
+                    <img src="https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp" alt="Book Image">
+                    <img src="https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp" alt="Book Image">
+                    <img src="https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp" alt="Book Image">
+                </div>
+            </div>
+        </div>
+
+        <button class="next">›</button>
+    </div>
+
+    <footer>
+        <p>© BookSaw</p>
+    </footer>
+</body>
+</html>
