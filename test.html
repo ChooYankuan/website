@@ -23,25 +23,147 @@
             padding: 15px;
         }
 
-       .carousel 
-       {
+        /* Refactored Carousel Styles */
+        .carousel 
+        {
             width: 600px;
             height: 400px;
             margin: 50px auto;
-            overflow: hidden;
             position: relative;
-
-        
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }   
-        .carousel-window 
-        {
-        width: 100%;
-        overflow: hidden;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        
+
+        .carousel__viewport 
+        {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .carousel__track 
+        {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .carousel__track {
+                transition: none;
+            }
+        }
+
+        .carousel__slide 
+        {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f9f9f9;
+        }
+
+        .carousel__slide img 
+        {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .carousel__button 
+        {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 10;
+            font-family: Arial, sans-serif;
+            padding: 0;
+        }
+
+        .carousel__button:hover 
+        {
+            background: rgba(0,0,0,0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel__button:focus 
+        {
+            outline: 3px solid #4A90E2;
+            outline-offset: 2px;
+        }
+
+        .carousel__button--prev 
+        {
+            left: 10px;
+        }
+
+        .carousel__button--next 
+        {
+            right: 10px;
+        }
+
+        .carousel__indicators 
+        {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel__indicator 
+        {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .carousel__indicator:hover 
+        {
+            transform: scale(1.2);
+        }
+
+        .carousel__indicator:focus 
+        {
+            outline: 2px solid #4A90E2;
+            outline-offset: 2px;
+        }
+
+        .carousel__indicator--active 
+        {
+            background: white;
+        }
+
+        .carousel__status 
+        {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        /* Original button styles for search */
         button 
         {
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -66,7 +188,7 @@
         <h1>BookSaw</h1>
         <p>get your books here</p>
     </header>
-    <nevigation>
+    <navigation>
         <a href="#">Home</a>
         <a href="#">Categories</a>
         <a href="#">Best Sellers</a>
@@ -85,27 +207,178 @@
         </button>
     </div>
 
-    <div class="carousel">
-        <button class="prev">‹</button> 
+    <!-- Refactored Carousel -->
+    <div class="carousel" role="region" aria-label="Book showcase carousel" id="bookCarousel">
+        <button 
+            class="carousel__button carousel__button--prev" 
+            aria-label="Previous slide"
+            id="prevBtn">
+            <span aria-hidden="true">‹</span>
+        </button>
 
-        <div class="carousel-window">
-            <div class="carousel-track">
-                <div class="slide">
-                    <img src="https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp" alt="Book Image">
-                    <img src="https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp" alt="Book Image">
-                    <img src="https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp" alt="Book Image">
-                    <img src="https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp" alt="Book Image">
-                    <img src="https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp" alt="Book Image">
-                    <img src="https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp" alt="Book Image">
-                </div>
+        <div class="carousel__viewport">
+            <div class="carousel__track" id="carouselTrack">
+                <!-- Slides generated by JavaScript -->
             </div>
         </div>
 
-        <button class="next">›</button>
+        <button 
+            class="carousel__button carousel__button--next" 
+            aria-label="Next slide"
+            id="nextBtn">
+            <span aria-hidden="true">›</span>
+        </button>
+
+        <div class="carousel__indicators" role="tablist" aria-label="Slide navigation" id="indicators">
+            <!-- Indicators generated by JavaScript -->
+        </div>
+
+        <div class="carousel__status" role="status" aria-live="polite" aria-atomic="true" id="carouselStatus">
+        </div>
     </div>
 
     <footer>
         <p>© BookSaw</p>
     </footer>
+
+    <script>
+        // Carousel data - easy to update
+        const carouselData = [
+            { 
+                src: 'https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp', 
+                alt: 'Book cover design with modern typography'
+            },
+            { 
+                src: 'https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp', 
+                alt: 'Colorful abstract book cover illustration'
+            },
+            { 
+                src: 'https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp', 
+                alt: 'Minimalist book design with geometric patterns'
+            },
+            { 
+                src: 'https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp', 
+                alt: 'Contemporary book cover with vibrant colors'
+            },
+            { 
+                src: 'https://edit.org/editor/json/2021/05/17/3/b/3b6d21566f05b26dc211a82fcf4fdba7.webp', 
+                alt: 'Classic literature book cover design'
+            },
+            { 
+                src: 'https://edit.org/editor/json/2021/05/17/3/7/378176f6d015035c6b004bcd601b5a0f.webp', 
+                alt: 'Modern fiction book cover artwork'
+            }
+        ];
+
+        class Carousel {
+            constructor(data) {
+                this.data = data;
+                this.currentIndex = 0;
+
+                // DOM elements
+                this.track = document.getElementById('carouselTrack');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.indicatorsContainer = document.getElementById('indicators');
+                this.status = document.getElementById('carouselStatus');
+
+                this.init();
+            }
+
+            init() {
+                this.renderSlides();
+                this.renderIndicators();
+                this.attachEventListeners();
+                this.updateCarousel();
+            }
+
+            renderSlides() {
+                this.track.innerHTML = this.data.map((item, index) => `
+                    <div class="carousel__slide" role="tabpanel" aria-label="Slide ${index + 1} of ${this.data.length}">
+                        <img src="${item.src}" alt="${item.alt}" loading="lazy">
+                    </div>
+                `).join('');
+            }
+
+            renderIndicators() {
+                this.indicatorsContainer.innerHTML = this.data.map((_, index) => `
+                    <button 
+                        class="carousel__indicator ${index === 0 ? 'carousel__indicator--active' : ''}"
+                        role="tab"
+                        aria-label="Go to slide ${index + 1}"
+                        aria-selected="${index === 0}"
+                        data-index="${index}">
+                    </button>
+                `).join('');
+            }
+
+            attachEventListeners() {
+                // Button navigation
+                this.prevBtn.addEventListener('click', () => this.goToPrevious());
+                this.nextBtn.addEventListener('click', () => this.goToNext());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.goToPrevious();
+                    if (e.key === 'ArrowRight') this.goToNext();
+                });
+
+                // Indicator navigation
+                this.indicatorsContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('carousel__indicator')) {
+                        const index = parseInt(e.target.dataset.index);
+                        this.goToSlide(index);
+                    }
+                });
+            }
+
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateCarousel();
+                this.announceSlide();
+            }
+
+            goToNext() {
+                if (this.currentIndex < this.data.length - 1) {
+                    this.currentIndex++;
+                } else {
+                    this.currentIndex = 0; // Loop back to start
+                }
+                this.updateCarousel();
+                this.announceSlide();
+            }
+
+            goToPrevious() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                } else {
+                    this.currentIndex = this.data.length - 1; // Loop to end
+                }
+                this.updateCarousel();
+                this.announceSlide();
+            }
+
+            updateCarousel() {
+                // Update track position
+                const offset = -this.currentIndex * 100;
+                this.track.style.transform = `translateX(${offset}%)`;
+
+                // Update indicators
+                const indicators = this.indicatorsContainer.querySelectorAll('.carousel__indicator');
+                indicators.forEach((indicator, index) => {
+                    const isActive = index === this.currentIndex;
+                    indicator.classList.toggle('carousel__indicator--active', isActive);
+                    indicator.setAttribute('aria-selected', isActive);
+                });
+            }
+
+            announceSlide() {
+                this.status.textContent = `Slide ${this.currentIndex + 1} of ${this.data.length}`;
+            }
+        }
+
+        // Initialize carousel when page loads
+        const carousel = new Carousel(carouselData);
+    </script>
 </body>
 </html>
