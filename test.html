@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOOKSAW</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -375,18 +376,21 @@
   .books-grid .book-card:nth-child(4) { animation: fadeIn 0.5s 0.4s ease both; }
 </style>
 </head>
-<body>
 
+<body>
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-socials">
-    <a href="#">BookSAW</a>
+    <a href="#" data-i18n="title">BookSAW</a>
   </div>
+<div class="lang-switch">
+  <button onclick="setLang('en')">EN</button>
+  <button onclick="setLang('zh')">中文</button>
+</div>
   <div class="topbar-right">
-    <a href="#">⊙ ACCOUNT</a>
-    <a href="#">⊡ CART (0)</a>
-    <a href="#">⌕ SEARCH</a>
-    <a href="#">⊞</a>
+    <a href="#" data-i18n="account">⊙ ACCOUNT</a>
+    <a href="#" data-i18n="cart">⊡ CART (0)</a>
+    <a href="#" data-i18n="search">⌕ SEARCH</a>
   </div>
 </div>
 
@@ -394,12 +398,12 @@
 <nav>
   <a href="#" class="logo">BOOKSAW</a>
   <ul class="nav-links">
-    <li><a href="#" class="active">HOME</a></li>
-    <li><a href="#">ABOUT</a></li>
-    <li><a href="#">PAGES</a></li>
-    <li><a href="#">SHOP</a></li>
-    <li><a href="#">ARTICLES</a></li>
-    <li><a href="#">CONTACT</a></li>
+    <li><a href="#" class="active" data-i18n="home">HOME</a></li>
+    <li><a href="#" data-i18n="about">ABOUT</a></li>
+    <li><a href="#" data-i18n="pages">PAGES</a></li>
+    <li><a href="#" data-i18n="shop">SHOP</a></li>
+    <li><a href="#" data-i18n="articles">ARTICLES</a></li>
+    <li><a href="#" data-i18n="contact">CONTACT</a></li>
   </ul>
   <div class="hamburger">≡</div>
 </nav>
@@ -411,7 +415,7 @@
   <div class="hero-content">
     <h1>The Last Quarter<br>Of The Moon</h1>
     <p>In this sweeping epic full of love and loss, a woman from one of the last remote reindeer-herding tribes of northeastern China tells the story of her family and the last century of her country's history.</p>
-    <a href="#" class="btn-outline">READ MORE →</a>
+    <a href="#" class="btn-outline" data-i18n="read">READ MORE →</a>
   </div>
 
   <div class="hero-circle"></div>
@@ -459,8 +463,8 @@
 
 <!-- FEATURED BOOKS -->
 <section class="featured">
-  <p class="section-label">Some Quality Items</p>
-  <h2 class="section-title">Featured Books</h2>
+  <p class="section-label" data-i18n="quality">Some Quality Items</p>
+  <h2 class="section-title" data-i18n="featured">Featured Books</h2>
 
   <div class="carousel-wrapper">
     <button class="carousel-btn prev" id="prevBtn" disabled>←</button>
@@ -562,8 +566,17 @@
 
   <div class="featured-footer">
     <div class="page-dots" id="carouselDots"></div>
-    <a href="#" class="view-all">View All Products →</a>
+    <a href="#" class="view-all" data-i18n="view">View All Products →</a>
   </div>
+</section>
+
+<!-- 3D BOOK EXPERIENCE -->
+<section class="book3d-section">
+  <p class="section-label" data-i18n="interact">Interactive Preview</p>
+  <h2 class="section-title" data-i18n="flipBook">Flip Through The Book</h2>
+  
+<link rel="stylesheet" href="styles.css">
+  <header class="container"><button onclick="window.location.href='interact.html'" data-i18n="click">Click me</button></header>
 </section>
 
 <script>
@@ -615,5 +628,6 @@
     }
   });
 </script>
+<script src="lang.js"></script>
 </body>
 </html>
